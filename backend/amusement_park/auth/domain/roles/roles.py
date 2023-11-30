@@ -16,6 +16,8 @@ class Role(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(30), nullable=False, unique=True)
 
+    person = relationship("Person", back_populates="role")
+
     def __repr__(self) -> str:
         return f"Role('{self.id}', '{self.name}')"
 
