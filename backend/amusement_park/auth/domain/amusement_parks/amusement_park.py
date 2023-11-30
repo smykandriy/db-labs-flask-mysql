@@ -19,6 +19,7 @@ class AmusementPark(db.Model):
     location_id = Column(Integer, ForeignKey("location.id"), nullable=False)
 
     location = relationship("Location", back_populates="amusement_park")
+    shows = relationship("Show", back_populates="amusement_park")
 
     def __repr__(self) -> str:
         return (
@@ -31,12 +32,15 @@ class AmusementPark(db.Model):
         Puts domain object into DTO without relationship.
         :return: DTO object as a dictionary
         """
-        return {
+        dto = {
             "id": self.id,
             "name": self.name,
             "max_visitors": self.max_visitors,
             "location_id": self.location_id,
         }
+        if all:
+            dto["shows"] = [show.put_into_dto() for show in self.shows]
+        return dto
 
     @staticmethod
     def create_from_dto(dto_dict: dict[str, Any]) -> Type["AmusementPark"]:
