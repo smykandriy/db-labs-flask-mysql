@@ -17,6 +17,7 @@ class AmusementPark(db.Model):
     name = Column(String(45), nullable=False)
     max_visitors = Column(Integer, nullable=False)
     location_id = Column(Integer, ForeignKey("location.id"), nullable=False)
+    franchise_id = Column(Integer)
 
     location = relationship("Location", back_populates="amusement_park")
     shows = relationship("Show", back_populates="amusement_park")
@@ -37,6 +38,7 @@ class AmusementPark(db.Model):
             "name": self.name,
             "max_visitors": self.max_visitors,
             "location_id": self.location_id,
+            "franchise_id": self.franchise_id,
         }
         if all:
             dto["shows"] = [show.put_into_dto() for show in self.shows]
@@ -54,5 +56,6 @@ class AmusementPark(db.Model):
             name=dto_dict.get("name"),
             max_visitors=dto_dict.get("max_visitors"),
             location_id=dto_dict.get("location_id"),
+            franchise_id=dto_dict.get("franchise_id"),
         )
         return obj

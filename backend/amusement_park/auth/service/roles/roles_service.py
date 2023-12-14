@@ -8,3 +8,6 @@ class RoleService(GeneralService):
     """
 
     _dao = role_dao
+
+    def update_role_permission(self, role_id, permission_id):
+        self._dao.update_role_permission(role_id, permission_id)

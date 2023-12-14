@@ -5,3 +5,4 @@ from .people.person import Person
 from .shows.show import Show, Attraction
 from .permissions.permission import Permission
 from .ticket.ticket import Ticket
+from .franchise.franchise import Franchise

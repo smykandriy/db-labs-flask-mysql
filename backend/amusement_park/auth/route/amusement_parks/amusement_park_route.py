@@ -244,6 +244,14 @@ def get_attraction_by_id(amusement_park_id: int, attraction_id: int) -> Response
     )
 
 
+@amusement_park_bp.get("/visitors/max")
+def get_park_with_max_visitors_route() -> Response:
+    return make_response(
+        jsonify(amusement_park_controller.get_park_with_max_visitors()),
+        HTTPStatus.OK,
+    )
+
+
 @amusement_park_bp.put("/<int:amusement_park_id>/attractions/<int:attraction_id>")
 def update_attraction(amusement_park_id: int, attraction_id: int) -> Response:
     """

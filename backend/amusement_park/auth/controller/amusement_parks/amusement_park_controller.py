@@ -8,3 +8,6 @@ class AmusementParkController(GeneralController):
     """
 
     _service = amusement_park_service
+
+    def get_park_with_max_visitors(self):
+        return self._service.get_park_with_max_visitors()

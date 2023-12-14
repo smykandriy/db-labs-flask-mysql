@@ -8,3 +8,6 @@ class RoleController(GeneralController):
     """
 
     _service = role_service
+
+    def put_permission_to_role(self, role_id, permission_id):
+        self._service.update_role_permission(role_id, permission_id)

@@ -1,3 +1,5 @@
+from sqlalchemy import text
+
 from amusement_park.auth.dao.general_dao import GeneralDAO
 from amusement_park.auth.domain.amusement_parks.amusement_park import AmusementPark
 
@@ -21,3 +23,6 @@ class AmusementParkDAO(GeneralDAO):
             .order_by(AmusementPark.name)
             .all()
         )
+
+    def get_park_with_max_visitors(self):
+        return self._session.execute(text("CALL get_park_with_max_visitors()")).all()
