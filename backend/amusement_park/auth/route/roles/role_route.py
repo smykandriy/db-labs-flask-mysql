@@ -59,6 +59,15 @@ def get_role_permissions(role_id: int) -> Response:
         HTTPStatus.OK,
     )
 
+@role_bp.put("/<int:role_id>/permissions/<int:permission_id>")
+def add_permission_to_role(role_id: int, permission_id: int) -> Response:
+    """
+    Deletes client by ID.
+    :return: Response object
+    """
+    role = role_controller.put_permission_to_role(role_id, permission_id)
+    return make_response("Role permissions updated", HTTPStatus.OK)
+
 
 @role_bp.post("")
 def create_role() -> Response:

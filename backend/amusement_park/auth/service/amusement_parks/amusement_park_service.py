@@ -52,3 +52,6 @@ class AmusementParkService(GeneralService):
         """
         attraction.amusement_park_id = amusement_park_id
         return self._attraction_dao.create(attraction)
+
+    def get_park_with_max_visitors(self):
+        return self._dao.get_park_with_max_visitors()
